@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - Your Company</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --deep: #0d1a60;
+            --royal: #2a3fdb;
+            --royal-2: #1e2a78;
+            --yellow-accent: #f0db4f;
+            --section-padding: 80px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding-top: 80px;
+            color: #111;
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        /* --- GLOBAL FONT STANDARDIZATION --- */
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 1.8rem; /* Consistent Heading Size */
+            font-weight: 700; 
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        p, .card-text, .form-control, .btn, .nav-link, li, .list-group-item, .lead, .small {
+            font-size: 1rem; /* Consistent Normal Text Size */
+        }
+        
+        .lead {
+            font-weight: 400;
+        }
+
+        .section-gap {
+            padding-top: var(--section-padding);
+            padding-bottom: var(--section-padding);
+        }
+
+        /* --- NAVBAR STYLES --- */
+        .navbar {
+            background: linear-gradient(90deg, var(--deep), var(--royal-2));
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        .navbar-brand img {
+            max-height: 60px;
+            border-radius: 50px;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            position: relative;
+            transition: .3s;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--yellow-accent);
+            left: 50%;
+            bottom: -5px;
+            transition: .3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .register-btn {
+            background: var(--yellow-accent);
+            color: var(--royal-2);
+            border-radius: 30px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .register-btn:hover {
+            background: #fff;
+            color: var(--royal);
+            transform: scale(1.08);
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background: var(--royal-2);
+                padding: 1rem;
+                border-radius: 10px;
+                margin-top: 10px;
+            }
+        }
+        
+        .btn-primary-royal {
+            background: var(--royal);
+            border: none;
+            border-radius: 28px;
+            padding: .6rem 1.2rem;
+            color: #fff;
+        }
+        
+        /* --- FOOTER STYLES --- */
+        .footer {
+            background-color: var(--deep);
+            color: #fff;
+            padding: 60px 0 20px;
+            text-align: center;
+        }
+
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 1.25rem; /* Slightly smaller for footer heading */
+        }
+
+        .footer p, .footer a, .footer li {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--yellow-accent);
+        }
+
+        .footer .social-icons a {
+            font-size: 1.5rem;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: var(--yellow-accent);
+        }
+
+        .footer .list-unstyled li {
+            margin-bottom: 8px;
+        }
+
+        .footer hr {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo {
+            font-weight: bold;
+            color: var(--yellow-accent) !important;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .footer-logo img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+
+        /* --- ANIMATION SETUP (Scroll-Triggered Zoom) --- */
+        .animated-section {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .animated-section.in-view {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* 1. BLOG HERO (Typing and Zoom-in) */
+        .blog-hero {
+            background-color: #fff; 
+            color: var(--deep); 
+            padding: 100px 0 50px;
+            text-align: center;
+            overflow: hidden;
+            animation: text-zoom-in 1.5s ease-out;
+        }
+
+        .blog-hero h1 {
+            color:var(--royal-2);
+            font-size: 2.5rem; /* Slightly larger for hero H1 */
+            animation: typing 3s steps(28, end) forwards;
+            overflow: hidden; 
+            white-space: nowrap; 
+            width: 0; 
+            border-right: .15em solid var(--yellow-accent); 
+        }
+        
+        .blog-hero p {
+            color: #555;
+            animation: fade-in 1.5s ease-out 1s forwards; 
+            opacity: 0; 
+        }
+        
+        /* Keyframe Animations (for Hero) */
+        @keyframes text-zoom-in {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 2. Category Grid */
+        .category-card {
+            background-color: var(--royal);
+            color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: background-color 0.4s ease, transform 0.4s ease;
+            cursor: pointer;
+            height: 100%;
+            border: 2px solid var(--royal);
+        }
+        
+        .category-card:hover {
+            background-color: var(--royal-2);
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--yellow-accent);
+        }
+
+        .category-card i {
+            font-size: 3rem;
+            color: var(--yellow-accent);
+            margin-bottom: 15px;
+        }
+
+        /* 3. Featured Spotlight */
+        .spotlight-article {
+            background-color: #fff; 
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .spotlight-article img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .spotlight-content {
+            padding: 40px;
+        }
+
+        .spotlight-content h2 {
+            color: var(--deep);
+        }
+
+        /* 4. Article List & Sidebar */
+        .article-card-list {
+            display: flex;
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s ease;
+            border-left: 5px solid var(--yellow-accent);
+        }
+        
+        .article-card-list:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-card-list .img-fluid {
+            max-width: 150px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .article-card-list h5 {
+            color: var(--royal);
+            font-weight: 600;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar-box {
+            background-color: var(--royal-2);
+            color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .sidebar-box h4 {
+            color: var(--yellow-accent);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tag-btn {
+            background-color: var(--deep);
+            color: #fff;
+            border-radius: 20px;
+            padding: 5px 15px;
+            margin: 5px 5px 5px 0;
+            transition: background-color 0.3s, transform 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .tag-btn:hover {
+            background-color: var(--royal);
+            transform: scale(1.05);
+        }
+
+        .tag-btn.active {
+            background-color: var(--yellow-accent);
+            color: var(--deep);
+            font-weight: 600;
+        }
+        
+        /* --- FINAL CTA SECTION STYLES --- */
+        .cta-section {
+            background-color: white;
+            color: var(--deep);
+            text-align: center;
+            padding-top: var(--section-padding); 
+            padding-bottom: var(--section-padding);
+            margin-top: 0; 
+            margin-bottom: 0;
+        }
+        
+        .cta-section h2 {
+            color:var(--royal-2);
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color:var(--royal-2);
+            font-weight: 400;
+        }
+        
+        .cta-section .btn {
+            background-color: var(--yellow-accent);
+            color: var(--deep);
+            font-weight: 700;
+            padding: 12px 30px;
+            border-radius: 30px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .cta-section .btn:hover {
+            background-color: #fff;
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: var(--royal);
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: .3s;
+            z-index: 999;
+        }
+
+        #back-to-top:hover {
+            background-color: var(--royal-2);
+        }
+    </style>
+</head>
+
+<body>
+   <nav class="navbar navbar-expand-lg px-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#home">
+            <img src="Images/colored-logo[1].png" alt="Logo">
+        </a>
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto gap-3">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="home1.html">Home1</a></li>
+                <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+                <li class="nav-item"><a class="nav-link" href="servicedetailspage.html">Service Details</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="blogdetailspage.html">Blog Details</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+           <div class="d-flex align-items-center gap-3">
+    <a href="signup.html" class="btn register-btn px-3 py-2">SignUp</a>
+    <a href="pricing.html" class="btn register-btn px-3 py-2"><i class="fas fa-tag"></i> Pricing</a>
+</div>
+        </div>
+    </div>
+</nav>
+    
+    <main>
+        <section id="blog-hero" class="blog-hero">
+            <div class="container">
+                <h1 class="mb-3">Our Digital Insight Hub</h1>
+                <p class="lead">Exploring the convergence of business strategy and future-proof technology.</p>
+            </div>
+        </section>
+
+        <section id="category-highlights" class="section-gap bg-light animated-section">
+            <div class="container">
+                <h2 class="text-center mb-5 text-dark">🎯 Quick Jump to Topics</h2>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="category-card" data-filter="ai">
+                            <i class="fas fa-robot"></i>
+                            <h3>Artiﬁcial Intelligence</h3>
+                            <p>Deep dives into machine learning and automation.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="category-card" data-filter="data">
+                            <i class="fas fa-database"></i>
+                            <h3>Big Data Analytics</h3>
+                            <p>Turning raw data into powerful business decisions.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="category-card" data-filter="cloud">
+                            <i class="fas fa-server"></i>
+                            <h3>Cloud Infrastructure</h3>
+                            <p>Scalable, reliable, and secure cloud solutions.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="category-card" data-filter="devops">
+                            <i class="fas fa-cogs"></i>
+                            <h3>DevOps & Agile</h3>
+                            <p>Optimizing development and deployment cycles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="featured-spotlight" class="section-gap animated-section">
+            <div class="container">
+                <h2 class="mb-5 text-center text-dark">⭐ Featured Read of the Month</h2>
+                <div class="spotlight-article row g-0 shadow-lg">
+                    <div class="col-lg-6">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4O8pM8TvL7o2q7npPMEQAG-DVpBOL0ASUKg&s" class="img-fluid rounded-start" alt="Cybersecurity Trend Image">
+                    </div>
+                    <div class="col-lg-6 d-flex align-items-center">
+                        <div class="spotlight-content">
+                            <span class="badge mb-3" style="background-color: var(--yellow-accent) !important; color: var(--deep) !important; font-size: 1rem;">CYBERSECURITY</span>
+                            <h2 class="mb-3">2025 Cybersecurity Trends You Can't Ignore</h2>
+                            <p class="text-muted mb-4">The threat landscape is evolving rapidly. We break down the top defense strategies, from zero-trust architecture to advanced behavioral analytics, ensuring your enterprise remains impenetrable.</p>
+                            <p class="text-muted small">By Jane Doe | September 10, 2025</p>
+                            <a href="#" class="btn btn-primary-royal mt-3">Read Full Article &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="article-list-sidebar" class="section-gap bg-light animated-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3 class="mb-4 text-dark">Recent Releases</h3>
+
+                        <div class="mb-4 d-flex">
+                            <input type="text" class="form-control me-2" placeholder="Search by title or keyword..." id="articleSearch">
+                            <button class="btn btn-primary-royal" type="button"><i class="fas fa-search"></i></button>
+                        </div>
+
+                        <div id="articlesContainer">
+                            <div class="article-card-list ai cloud" data-tags="ai cloud architecture">
+                                <img src="https://www.securekloud.com/blog/wp-content/uploads/2024/12/AI-Driven-Insights-for-Cloud-Cost-Optimization-1024x506.png" class="img-fluid" alt="Article 1">
+                                <div class="flex-grow-1">
+                                    <h5 class="mt-0 mb-1">Optimizing Cloud Costs with AI-Driven Scaling</h5>
+                                    <p class="text-muted d-none d-sm-block">How smart algorithms can automatically adjust your cloud resources, saving money and improving performance.</p>
+                                    <a href="#" class="small text-decoration-none" style="color: var(--yellow-accent) !important;">Continue Reading</a>
+                                </div>
+                            </div>
+                            <div class="article-card-list data devops" data-tags="data metrics monitoring">
+                                <img src="https://melsatar.blog/wp-content/uploads/2021/06/DevOps-2.png" class="img-fluid" alt="Article 2">
+                                <div class="flex-grow-1">
+                                    <h5 class="mt-0 mb-1">Data-Driven DevOps: Improving Deployment Success</h5>
+                                    <p class="text-muted d-none d-sm-block">Using analytics to track and predict deployment failures before they impact production.</p>
+                                    <a href="#" class="small text-decoration-none" style="color: var(--yellow-accent) !important;">Continue Reading</a>
+                                </div>
+                            </div>
+                            <div class="article-card-list ai" data-tags="ai machine learning ethics">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl5iz2Zv5SAHjV2qLQaGjbt3COA0vgCaEMFw&s" class="img-fluid" alt="Article 3">
+                                <div class="flex-grow-1">
+                                    <h5 class="mt-0 mb-1">The Ethical Quandaries of Large Language Models</h5>
+                                    <p class="text-muted d-none d-sm-block">A crucial discussion on bias, transparency, and accountability in modern AI development.</p>
+                                    <a href="#" class="small text-decoration-none" style="color: var(--yellow-accent) !important;">Continue Reading</a>
+                                </div>
+                            </div>
+                            <div class="article-card-list cloud devops" data-tags="cloud devops automation">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWF8NMlPFzRk2Rr1ncsBwlOFH1xQHUDbeDow&s" class="img-fluid" alt="Article 4">
+                                <div class="flex-grow-1">
+                                    <h5 class="mt-0 mb-1">Infrastructure as Code: The Path to Zero Downtime</h5>
+                                    <p class="text-muted d-none d-sm-block">Implementing IaC principles to automate infrastructure setup and management securely.</p>
+                                    <a href="#" class="small text-decoration-none" style="color: var(--yellow-accent) !important;">Continue Reading</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <nav class="mt-4">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled"><a class="page-link" href="#" style="color: var(--deep);">Previous</a></li>
+                                <li class="page-item active"><a class="page-link" href="#" style="background-color: var(--royal); border-color: var(--royal);">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#" style="color: var(--deep);">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#" style="color: var(--deep);">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#" style="color: var(--deep);">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="col-lg-4 mt-5 mt-lg-0">
+                        <div class="sidebar-box sticky-top">
+                            <h4>Explore by Tag</h4>
+                            <div class="tag-cloud">
+                                <button class="tag-btn active" data-filter="all">All</button>
+                                <button class="tag-btn" data-filter="ai">AI</button>
+                                <button class="tag-btn" data-filter="cloud">Cloud</button>
+                                <button class="tag-btn" data-filter="data">Data</button>
+                                <button class="tag-btn" data-filter="devops">DevOps</button>
+                                <button class="tag-btn" data-filter="security">Security</button>
+                                <button class="tag-btn" data-filter="ethics">Ethics</button>
+                                <button class="tag-btn" data-filter="automation">Automation</button>
+                            </div>
+                            
+                            <h4 class="mt-5">Never Miss an Update</h4>
+                            <p class="text-white-50">Sign up for our exclusive newsletter and get the latest insights first.</p>
+                            <form>
+                                <input type="email" class="form-control mb-3" placeholder="Your Email">
+                                <button class="btn register-btn w-100" type="submit">Subscribe Now</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="final-cta" class="cta-section animated-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Ready to Transform Your Business?</h2>
+                        <p>Don't just read about the future—build it. Connect with our expert consultants for a personalized strategy session today.</p>
+                        <a href="contact.html" class="btn">Get a Free Consultation &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row justify-content-center text-start">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0 text-center text-md-start">
+                    <a class="footer-logo" href="#">
+                        <img src="Images/colored-logo[1].png" alt="Logo">
+                        Company Name
+                    </a>
+                    <p class="mt-2">Building your path to success with a reliable IT Service.</p>
+                    <div class="social-icons mt-4 d-flex justify-content-center justify-content-md-start gap-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4 mb-md-0">
+                    <h5>Company</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="service.html">Our Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-3 mt-lg-0 text-center text-md-start">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form class="d-flex">
+                        <input type="email" class="form-control me-2" placeholder="Your Email">
+                        <button class="btn btn-primary-royal" type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-5">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="m-0">&copy; 2024 Your Company. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+  <a href="#" id="back-to-top" class="d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('articleSearch');
+            const filterButtons = document.querySelectorAll('.tag-btn');
+            const categoryCards = document.querySelectorAll('.category-card');
+            const articlesContainer = document.getElementById('articlesContainer');
+            const articleItems = articlesContainer.querySelectorAll('.article-card-list');
+
+            // --- ANIMATION JAVASCRIPT (Intersection Observer) ---
+            const animatedSections = document.querySelectorAll('.animated-section');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        // observer.unobserve(entry.target);
+                    } else {
+                        entry.target.classList.remove('in-view'); 
+                    }
+                });
+            }, observerOptions);
+const backToTop = document.getElementById('back-to-top');
+            animatedSections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // --- FILTERING LOGIC (Tags and Category Cards) ---
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    applyFilter(filter);
+                });
+            });
+
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    applyFilter(filter);
+                });
+            });
+
+            function applyFilter(filter) {
+                filterButtons.forEach(btn => {
+                    if (btn.getAttribute('data-filter') === filter) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+
+                articleItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                performSearch(searchInput.value); 
+                document.getElementById('article-list-sidebar').scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // --- SEARCHING LOGIC ---
+            searchInput.addEventListener('keyup', function() {
+                performSearch(this.value);
+            });
+
+            function performSearch(searchText) {
+                const query = searchText.toLowerCase();
+                
+                articleItems.forEach(item => {
+                    const title = item.querySelector('h5').textContent.toLowerCase();
+                    const text = item.querySelector('p').textContent.toLowerCase();
+                    const tags = item.getAttribute('data-tags');
+                    
+                    const isFilteredByTag = item.style.display !== 'none';
+
+                    if (isFilteredByTag) {
+                        if (title.includes(query) || text.includes(query) || (tags && tags.includes(query))) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

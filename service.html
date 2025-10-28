@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Commercial Solutions - Your Company</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --deep: #0d1a60;
+            --royal: #2a3fdb;
+            --royal-2: #1e2a78;
+            --sky: #eaf1ff;
+            --card: #ffffff;
+            --yellow-accent: #f0db4f;
+            --section-padding: 80px;
+            --section-padding-mobile: 60px;
+            
+            --heading-size-lg: 3rem;
+            --heading-size-md: 2rem;
+            --text-size: 1rem;
+            --lead-size: 1.15rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding-top: 80px;
+            color: #111;
+            background: var(--card);
+        }
+
+        .hero-section h1,
+        .section-heading {
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--royal-2);
+            font-size: var(--heading-size-md);
+        }
+        
+        h3, h5 {
+            font-weight: 700;
+            color: var(--royal-2);
+        }
+
+        p, .text-muted, .list-unstyled li, .lead {
+            font-size: var(--text-size);
+        }
+        .lead {
+            font-size: var(--lead-size) !important;
+        }
+
+        @media (min-width: 992px) {
+            .hero-section h1 {
+                font-size: var(--heading-size-lg) !important; 
+            }
+            .section-heading {
+                font-size: var(--heading-size-md) !important; 
+            }
+        }
+        
+        .hero-section {
+            padding: var(--section-padding) 0;
+            background: linear-gradient(135deg, var(--sky), #f8faff);
+            text-align: center;
+        }
+
+        .section {
+            padding: var(--section-padding) 0;
+        }
+
+        @media (max-width: 767.98px) {
+            .hero-section,
+            .section {
+                padding: var(--section-padding-mobile) 0;
+            }
+        }
+        
+        .navbar {
+            background: linear-gradient(90deg, var(--deep), var(--royal-2));
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        .navbar-brand img {
+            max-height: 60px;
+            border-radius: 50px;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            position: relative;
+            transition: .3s;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--yellow-accent);
+            left: 50%;
+            bottom: -5px;
+            transition: .3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .register-btn {
+            background: var(--yellow-accent);
+            color: var(--royal-2);
+            border-radius: 30px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .register-btn:hover {
+            background: #fff;
+            color: var(--royal);
+            transform: scale(1.08);
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background: var(--royal-2);
+                padding: 1rem;
+                border-radius: 10px;
+                margin-top: 10px;
+            }
+        }
+
+        .btn-primary-royal {
+            background: var(--royal);
+            border: none;
+            border-radius: 28px;
+            padding: .6rem 1.2rem;
+            color: #fff;
+            transition: all .3s ease;
+        }
+
+        .btn-outline-darkblue {
+            border: 1.5px solid var(--royal);
+            color: var(--royal);
+            background: #fff;
+            border-radius: 28px;
+            padding: .6rem 1.2rem;
+            transition: all .3s ease;
+        }
+
+        .btn-primary-royal:hover {
+            filter: brightness(.95);
+            box-shadow: 0 4px 12px rgba(42, 63, 219, .4);
+        }
+
+        .btn-outline-darkblue:hover {
+            background: var(--royal);
+            color: #fff;
+        }
+
+        .footer {
+            background-color: var(--deep);
+            color: #fff;
+            padding: 60px 0 20px;
+            text-align: center;
+        }
+
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .footer p, .footer a, .footer li {
+            font-size: var(--text-size);
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--yellow-accent);
+        }
+
+        .footer .social-icons a {
+            font-size: 1.5rem;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: var(--yellow-accent);
+        }
+
+        .footer .list-unstyled li {
+            margin-bottom: 8px;
+        }
+
+        .footer hr {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--yellow-accent) !important;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+        
+        .service-card {
+            background: var(--card);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .15);
+            border: 2px solid var(--royal);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--royal);
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        .service-card:hover .service-icon {
+            color: var(--yellow-accent);
+        }
+        
+        .detailed-service-row {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .05);
+            transition: box-shadow 0.3s ease;
+        }
+        .detailed-service-row:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
+        }
+
+        .tag-pill {
+            display: inline-block;
+            padding: .3rem .75rem;
+            border: 1px dashed var(--royal);
+            border-radius: 999px;
+            font-size: .8rem;
+            color: var(--royal-2);
+            background: var(--sky);
+            margin-right: .4rem;
+            margin-bottom: .4rem;
+        }
+        
+        .image-placeholder {
+            background-color: var(--deep);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            min-height: 250px;
+            border: 1px dashed var(--yellow-accent);
+        }
+        .image-placeholder p {
+            color: #fff;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .process-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 40px;
+        }
+        .process-item::before {
+            content: "";
+            position: absolute;
+            left: 19px;
+            top: 40px;
+            width: 2px;
+            height: calc(100% - 40px);
+            background: rgba(42, 63, 219, 0.2);
+        }
+        .process-item:last-child::before {
+            content: none;
+        }
+
+        .process-icon-circle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--royal);
+            color: var(--yellow-accent);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        }
+        .process-item:hover .process-icon-circle {
+            transform: scale(1.1) rotate(5deg);
+            background: var(--deep);
+            color: var(--yellow-accent);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, .2);
+        }
+        
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+     <nav class="navbar navbar-expand-lg px-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#home">
+            <img src="Images/colored-logo[1].png" alt="Logo">
+        </a>
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto gap-3">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="home1.html">Home1</a></li>
+                <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+                <li class="nav-item"><a class="nav-link" href="servicedetailspage.html">Service Details</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="blogdetailspage.html">Blog Details</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+           <div class="d-flex align-items-center gap-3">
+    <a href="signup.html" class="btn register-btn px-3 py-2">SignUp</a>
+    <a href="pricing.html" class="btn register-btn px-3 py-2"><i class="fas fa-tag"></i> Pricing</a>
+</div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="hero-section" id="commercial-hero">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4" data-aos="fade-up">Empowering Businesses with Cutting-Edge Solutions</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="200">
+                We provide tailored commercial services to help your business grow, innovate, and lead the market.
+            </p>
+            <a href="#services-grid" class="btn btn-primary-royal btn-lg" data-aos="fade-up" data-aos-delay="400">Discover Our Services</a>
+        </div>
+    </section>
+    
+    <section class="section" id="services-grid">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-down">
+                <h2 class="section-heading mb-3">Our Commercial Services Offerings 💻</h2>
+                <p class="lead text-muted">Integrated solutions designed to future-proof your business in a dynamic digital landscape.</p>
+            </div>
+            <div class="row g-4">
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-sitemap"></i></div>
+                        <h5>Strategic Consulting</h5>
+                        <p class="text-muted">Develop a clear roadmap for digital transformation and business growth. (All text size: 1rem)</p>
+                        <a href="#detailed-consulting" class="btn btn-outline-darkblue btn-sm mt-3">Explore Strategy</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-cloud"></i></div>
+                        <h5>Cloud Integration</h5>
+                        <p class="text-muted">Seamlessly migrate and manage your infrastructure on leading cloud platforms.</p>
+                        <a href="#detailed-cloud" class="btn btn-outline-darkblue btn-sm mt-3">Optimize Cloud</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                        <h5>Data Analytics</h5>
+                        <p class="text-muted">Turn raw data into actionable insights to make informed business decisions.</p>
+                        <a href="#" class="btn btn-outline-darkblue btn-sm mt-3">Get Insights</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="450">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h5>Cybersecurity</h5>
+                        <p class="text-muted">Protect your assets and data with our comprehensive security solutions.</p>
+                        <a href="#" class="btn btn-outline-darkblue btn-sm mt-3">Secure Your Future</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-robot"></i></div>
+                        <h5>AI & Automation</h5>
+                        <p class="text-muted">Automate repetitive tasks and leverage AI for enhanced productivity.</p>
+                        <a href="#" class="btn btn-outline-darkblue btn-sm mt-3">Automate Now</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="750">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-headset"></i></div>
+                        <h5>IT Support & Management</h5>
+                        <p class="text-muted">Reliable, 24/7 support to keep your operations running smoothly.</p>
+                        <a href="#" class="btn btn-outline-darkblue btn-sm mt-3">View Support Plans</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="m-0 border-3 border-secondary-subtle">
+    
+    <hr class="m-0 border-3 border-secondary-subtle">
+
+    <section class="section" id="our-process">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-down">
+                <h2 class="section-heading mb-3">Our Proven Implementation Process ⚙️</h2>
+                <p class="lead text-muted">A simple, transparent journey from idea to execution.</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    
+                    <div class="process-item" data-aos="fade-up">
+                        <div class="process-icon-circle"><i class="fas fa-drafting-compass"></i></div>
+                        <h5 class="fw-bold">1. Discovery & Strategy</h5>
+                        <p class="text-muted">We start by understanding your business, challenges, and goals to create a tailored strategy and project plan.</p>
+                    </div>
+                    
+                    <div class="process-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="process-icon-circle"><i class="fas fa-laptop-code"></i></div>
+                        <h5 class="fw-bold">2. Design & Development</h5>
+                        <p class="text-muted">Our expert team builds and designs the solution, ensuring a seamless user experience and robust functionality, following agile methodologies.</p>
+                    </div>
+                    
+                    <div class="process-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="process-icon-circle"><i class="fas fa-cogs"></i></div>
+                        <h5 class="fw-bold">3. Implementation & Launch</h5>
+                        <p class="text-muted">We smoothly integrate the new solution into your existing systems, perform comprehensive testing, and launch it with minimal disruption to your daily operations.</p>
+                    </div>
+                    
+                    <div class="process-item" data-aos="fade-up" data-aos-delay="600">
+                        <div class="process-icon-circle"><i class="fas fa-hands-helping"></i></div>
+                        <h5 class="fw-bold">4. Support & Optimization</h5>
+                        <p class="text-muted">Our partnership doesn't end at launch. We provide ongoing 24/7 support, continuous monitoring, and optimization to ensure long-term peak performance and value delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row justify-content-center text-start">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0 text-center text-md-start">
+                    <a class="footer-logo" href="#">
+                        <img src="Images/colored-logo[1].png" alt="Logo">
+                        Company Name
+                    </a>
+                    <p class="mt-2">Building your path to success with a reliable IT Service.</p>
+                    <div class="social-icons mt-4 d-flex gap-3 justify-content-center justify-content-md-start">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4 mb-md-0">
+                    <h5>Company</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#services-grid">Our Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-3 mt-lg-0 text-center text-md-start">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form class="d-flex">
+                        <input type="email" class="form-control me-2" placeholder="Your Email">
+                        <button class="btn btn-primary-royal" type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-5">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="m-0">&copy; 2024 Your Company. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#commercial-hero" id="back-to-top" class="d-flex align-items-center justify-content-center btn btn-primary-royal rounded-circle p-3"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 900,
+            once: true,
+            disable: 'mobile'
+        });
+
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

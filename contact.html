@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Commercial Solutions - Your Company</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --deep: #0d1a60;
+            --royal: #2a3fdb;
+            --royal-2: #1e2a78;
+            --sky: #f7f9ff;
+            --yellow-accent: #f0db4f;
+            --section-padding: 80px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding-top: 80px;
+            color: var(--deep);
+            background: #fff;
+            font-size: 1rem;
+            /* Standard font size for all normal text */
+        }
+
+        /* Standardize all headings to the same size for consistency (e.g., h2 style) */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--deep);
+        }
+
+        .lead,
+        p,
+        a,
+        li,
+        input,
+        textarea,
+        label,
+        button {
+            font-size: 1rem;
+        }
+
+        .navbar {
+            background: linear-gradient(90deg, var(--deep), var(--royal-2));
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        .navbar-brand img {
+            max-height: 60px;
+            border-radius: 50px;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            position: relative;
+            transition: .3s;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--yellow-accent);
+            left: 50%;
+            bottom: -5px;
+            transition: .3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .register-btn {
+            background: var(--yellow-accent);
+            color: var(--deep);
+            border-radius: 30px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .register-btn:hover {
+            background: #fff;
+            color: var(--royal);
+            transform: scale(1.08);
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background: var(--royal-2);
+                padding: 1rem;
+                border-radius: 10px;
+                margin-top: 10px;
+            }
+        }
+
+        .btn-primary-royal {
+            background: var(--royal);
+            border: none;
+            border-radius: 28px;
+            padding: .6rem 1.2rem;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .btn-royal-hover-yellow:hover {
+            background: var(--yellow-accent);
+            color: var(--deep);
+            border-color: var(--yellow-accent);
+        }
+
+        .bg-light-blue {
+            background-color: var(--sky);
+        }
+
+        .contact-section {
+            padding: var(--section-padding) 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--deep);
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--yellow-accent);
+        }
+
+        @media (min-width: 992px) {
+            .section-title.text-lg-start::after {
+                left: 0;
+                transform: translateX(0);
+            }
+        }
+
+        .contact-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            border: 1px solid var(--sky);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon i {
+            font-size: 2.2rem;
+            color: var(--royal);
+            margin-bottom: 15px;
+        }
+
+        .map-container {
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .footer {
+            background-color: var(--deep);
+            color: #fff;
+            padding: 60px 0 20px;
+            text-align: center;
+        }
+
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        .footer p,
+        .footer a,
+        .footer li {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--yellow-accent);
+        }
+
+        .footer .social-icons a {
+            font-size: 1.5rem;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: var(--yellow-accent);
+        }
+
+        .footer .list-unstyled li {
+            margin-bottom: 8px;
+        }
+
+        .footer hr {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--yellow-accent) !important;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo img {
+            max-height: 40px;
+            margin-right: 10px;
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: var(--royal);
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: .3s;
+            z-index: 999;
+        }
+
+        #back-to-top:hover {
+            background-color: var(--royal-2);
+        }
+    </style>
+</head>
+
+<body>
+   <nav class="navbar navbar-expand-lg px-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#home">
+            <img src="Images/colored-logo[1].png" alt="Logo">
+        </a>
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto gap-3">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="home1.html">Home1</a></li>
+                <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+                <li class="nav-item"><a class="nav-link" href="servicedetailspage.html">Service Details</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="blogdetailspage.html">Blog Details</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+           <div class="d-flex align-items-center gap-3">
+    <a href="signup.html" class="btn register-btn px-3 py-2">SignUp</a>
+    <a href="pricing.html" class="btn register-btn px-3 py-2"><i class="fas fa-tag"></i> Pricing</a>
+</div>
+        </div>
+    </div>
+</nav>
+
+    <section class="py-5 text-center bg-light-blue">
+        <div class="container" data-aos="fade-up">
+            <h1 class="display-4 fw-bold">Contact Our Team</h1>
+            <p class="lead text-secondary">We're here to answer your questions and help you build your success.</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="section-title">Reach Out to Us</h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="contact-card text-center" data-aos="zoom-in" data-aos-delay="100">
+                        <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                        <h5 class="fw-bold">Our Location</h5>
+                        <p class="mb-0">77 S Washington St.
+                            Seattle,</p>
+                        <p class="mb-0"> WA 98104
+                            206-474-1630</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-card text-center" data-aos="zoom-in" data-aos-delay="200">
+                        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                        <h5 class="fw-bold">Email Us</h5>
+                        <p class="mb-0"><a href="mailto:info@yourcompany.com" class="text-decoration-none"
+                                style="color: inherit;">220 Dexter Avenue North
+                                Seattle, WA 98109</a></p>
+                        <p class="mb-0"><a href="mailto:support@yourcompany.com" class="text-decoration-none"
+                                style="color: inherit;">support@yourcompany.com</a></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-card text-center" data-aos="zoom-in" data-aos-delay="300">
+                        <span class="contact-icon"><i class="fas fa-phone"></i></span>
+                        <h5 class="fw-bold">Call Us</h5>
+                        <p class="mb-0"><a href="tel:+15551234567" class="text-decoration-none"
+                                style="color: inherit;">206-474-1000</a></p>
+                        <p class="mb-0">Fax: 206-474-1001</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section bg-light-blue">
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <h2 class="section-title text-center text-lg-start mx-auto mx-lg-0">Send Us A Message</h2>
+                    <form class="p-4 bg-white rounded-3 shadow">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject">
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="form-label">Your Message</label>
+                            <textarea class="form-control" id="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-primary-royal btn-royal-hover-yellow w-100">Submit
+                            Message</button>
+                    </form>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h2 class="section-title text-center text-lg-start mx-auto mx-lg-0">Find Our Office</h2>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.259902641018!2d-73.9878235845941!3d40.74844097932824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b4999999%3A0x6e78b77e8a9f60!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1642861530985!5m2!1sen!2sus"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row justify-content-center text-start">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0 text-center text-md-start">
+                    <a class="footer-logo" href="#">
+                        <img src="Images/colored-logo[1].png" alt="Logo">
+                        Company Name
+                    </a>
+                    <p class="mt-2">Building your path to success with a reliable IT Service.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4 mb-md-0">
+                    <h5>Company</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 mb-4 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-3 mt-lg-0 text-center text-md-start">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form class="d-flex">
+                        <input type="email" class="form-control me-2" placeholder="Your Email">
+                        <button class="btn btn-primary-royal" type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-5">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="m-0">© 2024 Your Company. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <a href="#" id="back-to-top" class="d-flex align-items-center justify-content-center"><i
+            class="fas fa-arrow-up"></i></a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        const backToTop = document.getElementById('back-to-top');
+    </script>
+</body>
+
+</html>
